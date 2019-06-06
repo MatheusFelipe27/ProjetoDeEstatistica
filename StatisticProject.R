@@ -3,7 +3,7 @@
 
 #Questão 1
 
-lista= read.csv('D:/Users/mfs5/Documents/ProjetoDeEstatistica/PlanilhaGOT - Página1.csv')
+lista= read.csv('C:/Users/mfs5/Documents/ProjetoDeEstatistica/PlanilhaGOT - Página1.csv')
 print(lista)
 
 #...........................................................................................................
@@ -89,31 +89,34 @@ x
 #Questão 5
 
 comparar = function(x,y,z){
-  episodios = c()
   notas = c()
+  episodios = c()
   temporadas = c()
   aux=1;
-  maior;
-  menor;
+  maior=0;
+  menor=0;
   aux2=1;
   aux3=1;
-  for (i in 1: length(x)){
-    while(z[i]==aux2){
+  count =1;
+  while (count<=length(x)){
+    while(count <= length(x) && z[count]==aux2){
       if (aux3==1){
-      maior=i;
-      menor=i;
+        maior=count;
+        menor=count;
       }
-      if (x[i]>x[maior]){
-        maior=i;
+      else {
+        if (x[count]>x[maior]){
+          maior=count;
+        }
+        if (x[count]<x[menor]){
+          menor=count;
+        }
       }
-      if (x[i]<x[menor]){
-        menor=i;
-      }
-      i=i+1;
+      count=count+1;
       aux3=aux3+1;
     }
     notas = c(notas, x[menor], x[maior])
-    episodios = c(episodios,y[menor], y[maior])
+    episodios = c(episodios,toString(y[menor]), toString(y[maior]))
     temporadas = c(temporadas, z[menor], z[maior])
     aux2=aux2+1;
     aux3=1;
@@ -127,3 +130,74 @@ comparar = function(x,y,z){
 
 x= comparar(lista[["Nota"]], lista[["Episodio"]], lista[["Temporada"]])
 x
+
+
+#...........................................................................................................
+
+#Questão 6
+
+menorDesvio = function(x){
+  temporada = c();
+  menorDesvio = 0;
+  temporada = 0;
+  aux = 0;
+  for(i in 1:8){
+    aux = sd(x[x$Temporada==i,"Audiencia.Em.milhoes."])
+    if(menorDesvio==0 || aux<menorDesvio){
+      menorDesvio = aux;
+      temporada = i;
+    }
+  }
+  return(temporada)
+}
+x = menorDesvio(lista)
+x
+
+#...........................................................................................................
+
+#Questão 7
+
+brienneappears= function(n,e,p){
+  episodios = c()
+  notas = c()
+  for (i in 1: length(n)){
+    v = unlist(strsplit(toString(p[i]),","));
+    for (j in v){
+      if (j=="Brienne of Tarth(Gwendoline Christie)"){
+        episodios = c(episodios, j)
+        notas = c(notas, n[i])
+      }
+    }
+  }
+  
+  media = mean(notas)
+  return (media);
+}
+
+x = brienneappears(lista[["Nota"]], lista[["Episodio"]], lista[["Personagens"]])
+x
+
+#...........................................................................................................
+
+
+#Questão 9
+
+histograma = function(t,p,namep){
+  temporada = c()
+  for (i in 1: length(p)){
+    v = unlist(strsplit(toString(p[i]),","));
+    for (j in v){
+      if (j ==namep){
+        temporada = c(temporada, t[i]-1)
+      }
+    }
+  }
+  
+Histo = hist(temporada, main = "Frequencia de Aparição", right=FALSE, breaks = c(0,1,2,3,4,5,6,7,8), xlab = "Temporada",xlim = c(0,8), ylab = "Ocorrencia", ylim= c(0,10), col = "pink")
+return (Histo);
+}
+
+x=histograma(lista[["Temporada"]], lista[["Personagens"]], "Brienne of Tarth(Gwendoline Christie)")
+
+
+ 
