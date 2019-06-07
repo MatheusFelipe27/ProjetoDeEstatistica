@@ -3,7 +3,7 @@
 
 #Questão 1
 
-lista= read.csv('C:/Users/Guilherme.LAPTOP-1CMN33F0/Desktop/ProjetoDeEstatistica/PlanilhaGOT - Página1.csv')
+lista= read.csv('D:/Users/mfs5/Documents/ProjetoDeEstatistica/PlanilhaGOT - Página1.csv')
 print(lista)
 
 #...........................................................................................................
@@ -91,7 +91,7 @@ x
 
 #Questão 5
 
-#Retorna o nome dos episódios com maior e menor nota, e depois faz um faça um dataframe com cada episódio encontrado
+#Retorna o nome dos episódios com maior e menor nota, e depois faz um dataframe com cada episódio encontrado
 
 comparar = function(x,y,z){
   notas = c()
@@ -141,7 +141,7 @@ x
 
 #Questão 6
 
-#Calcula os desvio padrão de todas a temporadas e imprime a que possui a menor
+#Calcula os desvios padrão de todas a temporadas e imprime a que possui o menor
 
 menorDesvio = function(x){
   temporada = c();
@@ -164,7 +164,7 @@ x
 
 #Questão 7
 
-#Faz uma média dos episódio em que Brienne of Tarth participa
+#Faz uma média dos episódios em que Brienne of Tarth participa
 
 brienneappears= function(n,e,p){
   episodios = c()
