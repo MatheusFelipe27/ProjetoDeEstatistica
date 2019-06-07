@@ -3,12 +3,14 @@
 
 #Questão 1
 
-lista= read.csv('C:/Users/mfs5/Documents/ProjetoDeEstatistica/PlanilhaGOT - Página1.csv')
+lista= read.csv('C:/Users/Guilherme.LAPTOP-1CMN33F0/Desktop/ProjetoDeEstatistica/PlanilhaGOT - Página1.csv')
 print(lista)
 
 #...........................................................................................................
 
 #Questão 2
+
+#Calcula-se a media, o desvio padrão e a moda das notas dos episódios.
 
 mediaNota = mean(lista[["Nota"]])
 mediaNota
@@ -41,12 +43,13 @@ x = modaNota(lista[["Nota"]])
 x
 
 
-#Calcula-se a media, o desvio padrão e a moda das notas dos episódios.
 
 
 #...........................................................................................................
 
 #Questão 3
+
+#Calcula-se a media, o desvio padrão e a mediana da audiencia dos episódios.
 
 mediaAudiencia = mean(lista[["Audiencia.Em.milhoes."]])
 mediaAudiencia
@@ -59,13 +62,14 @@ desvioAudiencia
 medianaAudiencia = median(lista[["Audiencia.Em.milhoes."]])
 medianaAudiencia
 
-#Calcula-se a media, o desvio padrão e a mediana da audiencia dos episódios.
 
 
 #...........................................................................................................
 
 
 #Questão 4
+
+#Olha-se as notas e imprime-se episódios com a nota maior que 9
 
 notasmaioresque9 = function(x, y){
   episodios = c()
@@ -82,11 +86,12 @@ x
 
 
 
-
 #...........................................................................................................
 
 
 #Questão 5
+
+#Retorna o nome dos episódios com maior e menor nota, e depois faz um faça um dataframe com cada episódio encontrado
 
 comparar = function(x,y,z){
   notas = c()
@@ -136,6 +141,8 @@ x
 
 #Questão 6
 
+#Calcula os desvio padrão de todas a temporadas e imprime a que possui a menor
+
 menorDesvio = function(x){
   temporada = c();
   menorDesvio = 0;
@@ -156,6 +163,8 @@ x
 #...........................................................................................................
 
 #Questão 7
+
+#Faz uma média dos episódio em que Brienne of Tarth participa
 
 brienneappears= function(n,e,p){
   episodios = c()
@@ -179,9 +188,41 @@ x
 
 #...........................................................................................................
 
+#Questão 8
+
+#Imprime os personagens que aparecem em apenas um episódio na quarta temporada
+
+onceCharacters = function(x){
+  names = c()
+  
+  for(w in 1:length(x)){
+    names = c(names, unlist(strsplit(toString(x[w]),",")))
+  }
+  characters = c()
+  for(k in 1:length(names)){
+    i = 0
+    for(j in 1:length(names)){
+      if(names[k]==names[j]){
+        i = i + 1
+      }
+    }
+    if (i == 1) {
+      characters = c(characters, names[k])
+    }
+  }
+  
+  return(characters)
+  
+}
+
+x = onceCharacters(lista[lista$Temporada==4,"Personagens"])
+print(x)
+
+#...........................................................................................................
 
 #Questão 9
 
+#Função que dado o nome de um personagem, cria um histograma onde mostra a frequência de aparição desse personagem a cada temporada.
 histograma = function(t,p,namep){
   temporada = c()
   for (i in 1: length(p)){
